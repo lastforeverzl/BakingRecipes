@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BakingRecipes</string>
+    <string name="ingredients_title">Recipe Ingredients</string>
+    <string name="steps_title">Recipe Steps Description</string>
+</resources>

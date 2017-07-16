@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/brown_light">
+
+        <TextView
+            android:id="@+id/tv_ingredients_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_padding_medium"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="@string/ingredients_title"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown_light"
+            android:nestedScrollingEnabled="false"/>
+
+        <TextView
+            android:id="@+id/tv_steps_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_padding_medium"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif"
+            android:text="@string/steps_title"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brown_light"
+            android:nestedScrollingEnabled="false"/>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

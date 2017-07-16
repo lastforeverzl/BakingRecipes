@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_step"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/steps_height"
+    android:layout_marginBottom="1dp"
+    android:paddingLeft="@dimen/text_padding_xlarge"
+    android:gravity="center|left"
+    android:background="@color/white"
+    android:textSize="@dimen/text_size_small"
+    tools:text="Recipe Introduction"/>
