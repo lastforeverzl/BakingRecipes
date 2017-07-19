@@ -31,7 +31,6 @@ import com.zackyzhang.bakingrecipes.data.Step;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import timber.log.Timber;
 
 /**
  * Created by lei on 7/13/17.
@@ -72,7 +71,6 @@ public class StepFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_step, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        Timber.tag(TAG).d(mStep.toString());
         String videoUrl = mStep.getVideoURL();
         if (videoUrl.isEmpty()) {
             videoUrl = mStep.getThumbnailURL();
@@ -109,7 +107,6 @@ public class StepFragment extends Fragment {
             MediaSource videoSource = new ExtractorMediaSource(
                     mediaUri, dataSourceFactory, extractorsFactory, null, null);
             mExoPlayer.prepare(new LoopingMediaSource(videoSource));
-//            mExoPlayer.setPlayWhenReady(true);
         }
     }
 

@@ -18,7 +18,6 @@ import com.zackyzhang.bakingrecipes.ui.adapter.RecipeStepsAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import timber.log.Timber;
 
 /**
  * Created by lei on 7/12/17.
@@ -71,9 +70,6 @@ public class RecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-
-        Timber.tag(TAG).d(mRecipe.getName());
-
         setupRecyclerView();
         return rootView;
     }
@@ -81,10 +77,6 @@ public class RecipeFragment extends Fragment {
     @Override public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    public void setRecipe(Recipe recipe) {
-        mRecipe = recipe;
     }
 
     private void setupRecyclerView() {

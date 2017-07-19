@@ -37,7 +37,6 @@ public class RecipeStepActivity extends AppCompatActivity implements
 
     private static final String TAG = "RecipeStepActivity";
 
-    private static final String TAG_RECIPE_FRAGMENT = "RecipeFragment";
     private static final String EXTRA_RECIPE_DETAIL =
             "com.zackyzhang.bakingrecipes.ui.activity.recipe_detail";
 
@@ -92,7 +91,6 @@ public class RecipeStepActivity extends AppCompatActivity implements
 
             if (recipeFragment == null) {
                 recipeFragment = RecipeFragment.newInstance(mRecipe);
-//            recipeFragment.setRecipe(mRecipe);
                 fragmentManager.beginTransaction()
                         .add(R.id.recipes_fragment, recipeFragment)
                         .commit();

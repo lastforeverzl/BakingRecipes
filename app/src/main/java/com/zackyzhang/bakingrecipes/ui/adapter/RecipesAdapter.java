@@ -71,7 +71,7 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
         }
 
         @OnClick(R.id.card_view)
-        public void onClick(View view) {
+        public void onClick() {
             int adapterPosition = getAdapterPosition();
             Recipe recipe = mRecipeList.get(adapterPosition);
             mClickHandler.onItemClick(recipe);

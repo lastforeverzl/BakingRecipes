@@ -5,5 +5,5 @@ package com.zackyzhang.bakingrecipes.network;
  */
 
 public interface AsyncTaskCompleteListener<T> {
-    public void onTaskComplete(T result);
+    void onTaskComplete(T result);
 }

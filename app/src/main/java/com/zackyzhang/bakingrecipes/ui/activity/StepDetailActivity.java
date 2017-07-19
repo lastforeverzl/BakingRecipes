@@ -36,7 +36,6 @@ public class StepDetailActivity extends AppCompatActivity {
 
     private int mStepNumber;
     private List<Step> mSteps;
-    private StepFragment mStepFragment;
     private List<Fragment> mFragmentList;
     private StepsPagerAdapter mStepsPagerAdapter;
 
