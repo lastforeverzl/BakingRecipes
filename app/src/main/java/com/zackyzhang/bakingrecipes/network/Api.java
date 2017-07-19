@@ -57,4 +57,8 @@ public class Api {
             return null;
         }
     }
+
+    public OkHttpClient getOkHttpClient() {
+        return mOkHttpClient;
+    }
 }
