@@ -2,4 +2,11 @@
     <string name="app_name">BakingRecipes</string>
     <string name="ingredients_title">Recipe Ingredients</string>
     <string name="steps_title">Recipe Steps Description</string>
+    <string name="step_toolbar_title">Steps</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="desired_recipe_saved">Ingredient list is saved!</string>
+    <string name="preference_ingredients_key">"com.zackyzhang.bakingrecipes.desired_recipe_ingredients"</string>
+    <string name="preference_recipe_name_key">"com.zackyzhang.bakingrecipes.recipe_name_key"</string>
+    <string name="preference_file_key">"com.zackyzhang.bakingrecipes.PREFERENCE_FILE_KEY"</string>
 </resources>

@@ -61,6 +61,7 @@ public class StepDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.step_toolbar_title));
 
         mStepNumber = getIntent().getIntExtra(EXTRA_STEP_DETAIL, 0);
         mSteps = getIntent().getParcelableArrayListExtra(EXTRA_STEPS);
