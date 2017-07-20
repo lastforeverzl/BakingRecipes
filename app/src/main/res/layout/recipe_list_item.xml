@@ -12,13 +12,19 @@
     android:layout_marginRight="@dimen/margin_normal"
     card_view:cardCornerRadius="@dimen/card_view_corner_radius">
 
+    <ImageView
+        android:id="@+id/info_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
+
     <TextView
         android:id="@+id/info_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="@dimen/text_size_large"
-        android:background="@color/brown_light"
+        android:textColor="@color/black"
         tools:text="Brownies"/>
 
 </android.support.v7.widget.CardView>

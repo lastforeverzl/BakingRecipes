@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -25,8 +26,10 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 import com.zackyzhang.bakingrecipes.R;
 import com.zackyzhang.bakingrecipes.data.Step;
+import com.zackyzhang.bakingrecipes.utils.DisplayUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +52,8 @@ public class StepFragment extends Fragment {
     SimpleExoPlayerView mPlayerView;
     @BindView(R.id.description)
     TextView mDescription;
+    @BindView(R.id.thumbnail_iamge)
+    ImageView thumbnailImage;
 
     public static StepFragment newInstance(Step step) {
         StepFragment stepFragment = new StepFragment();
@@ -72,23 +77,34 @@ public class StepFragment extends Fragment {
         unbinder = ButterKnife.bind(this, rootView);
 
         String videoUrl = mStep.getVideoURL();
-        if (videoUrl.isEmpty()) {
-            videoUrl = mStep.getThumbnailURL();
-        }
-        String description = mStep.getDescription();
-        if (!videoUrl.isEmpty())
+        if (!DisplayUtils.isVideoUrl(videoUrl)) {
+            mPlayerView.setVisibility(View.INVISIBLE);
+            thumbnailImage.setVisibility(View.VISIBLE);
+            String imageUrl = mStep.getThumbnailURL();
+            if (DisplayUtils.isImageUrl(imageUrl)) {
+                Picasso.with(getActivity()).load(imageUrl).fit().centerCrop().into(thumbnailImage);
+            } else {
+                Picasso.with(getActivity()).load(R.drawable.default_thumbnail).fit().centerCrop().into(thumbnailImage);
+            }
+        } else {
             initializePlayer(Uri.parse(videoUrl));
-        else
-            mPlayerView.setVisibility(View.GONE);
+        }
+
+        String description = mStep.getDescription();
         mDescription.setText(description);
 
         return rootView;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        releasePlayer();
+    }
+
     @Override public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        releasePlayer();
     }
 
     private void initializePlayer(Uri mediaUri) {

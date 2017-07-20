@@ -3,6 +3,7 @@
           package="com.zackyzhang.bakingrecipes">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".MyApplication"
@@ -37,6 +38,14 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ingredient_widget_provider_info"/>
+        </receiver>
+
+        <receiver
+            android:name=".ConnectionReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
         </receiver>
 
         <service android:name=".ListWidgetService"

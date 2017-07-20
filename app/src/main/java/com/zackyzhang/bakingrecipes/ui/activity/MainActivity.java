@@ -11,7 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.zackyzhang.bakingrecipes.ConnectionReceiver;
+import com.zackyzhang.bakingrecipes.MyApplication;
 import com.zackyzhang.bakingrecipes.R;
 import com.zackyzhang.bakingrecipes.data.Recipe;
 import com.zackyzhang.bakingrecipes.network.AsyncTaskCompleteListener;
@@ -26,7 +29,8 @@ import butterknife.ButterKnife;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements
-        RecipesAdapter.RecipeAdapterOnClickHandler{
+        RecipesAdapter.RecipeAdapterOnClickHandler,
+        ConnectionReceiver.ConnectionReceiverListener {
 
     private static final String TAG = "MainActivity";
     private static final String BUNDLE_RECYCLER_LAYOUT = "MainActivity.recycler.layout";
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
+    @BindView(R.id.tv_no_connection)
+    TextView noConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         setSupportActionBar(mToolbar);
         ButterKnife.bind(this);
+        checkConnection();
 
         setupRecyclerView();
 
@@ -80,6 +87,13 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    private void checkConnection() {
+        boolean isConnected = ConnectionReceiver.isConnected();
+        if(!isConnected) {
+            noConnection.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void showProgressBar() {
         mProgressBar.setVisibility(View.VISIBLE);
     }
@@ -93,6 +107,29 @@ public class MainActivity extends AppCompatActivity implements
         Timber.tag(TAG).d(recipe.getName());
         Intent intent = RecipeStepActivity.newIntent(MainActivity.this, recipe);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // register connection status listener
+        MyApplication.getInstance().setConnectionListener(this);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if(!isConnected) {
+            //show a No Internet Alert or Dialog
+            if (mRecipes == null) {
+                noConnection.setVisibility(View.VISIBLE);
+            } else {
+                noConnection.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            // dismiss the dialog or refresh the activity
+            finish();
+            startActivity(getIntent());
+        }
     }
 
     public class RecipesAsyncTaskCompleteListener implements

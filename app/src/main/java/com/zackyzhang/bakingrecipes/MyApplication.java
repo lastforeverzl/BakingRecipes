@@ -9,10 +9,22 @@ import timber.log.Timber;
  */
 
 public class MyApplication extends Application {
+
+    private static MyApplication mInstance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mInstance = this;
 
         Timber.plant(new Timber.DebugTree());
+    }
+
+    public static synchronized MyApplication getInstance() {
+        return mInstance;
+    }
+
+    public void setConnectionListener(ConnectionReceiver.ConnectionReceiverListener listener) {
+        ConnectionReceiver.connectionReceiverListener = listener;
     }
 }
